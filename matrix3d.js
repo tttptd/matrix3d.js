@@ -196,5 +196,6 @@
                                 mx[12] + ',' + mx[13] + ',' + mx[14] + ',' + mx[15] + ')';
     };
 
+    w.Matrix3D = Matrix3D;
 
 })(window);
