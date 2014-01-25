@@ -7,7 +7,7 @@
     };
 
     Matrix3D.create = function() {
-        var out, args = Array.prototype.slice.call(argumenets);
+        var out, args = Array.prototype.slice.call(arguments);
         if (args.length > 0 && args.length < 16) throw 'Invalid arguments supplied!';
         if (args.length === 0) {
             out = new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
