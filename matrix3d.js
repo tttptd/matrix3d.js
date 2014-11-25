@@ -198,12 +198,12 @@
 
     Matrix3D.extract = function(mx) {
         return {
-            scaleX: mx[0].toFixed(10),
-            scaleY: mx[5].toFixed(10),
-            scaleZ: mx[10].toFixed(10),
-            translateX: mx[12].toFixed(10),
-            translateY: mx[13].toFixed(10),
-            translateZ: mx[14].toFixed(10)
+            scaleX: mx[0],
+            scaleY: mx[5],
+            scaleZ: mx[10],
+            translateX: mx[12],
+            translateY: mx[13],
+            translateZ: mx[14]
         };
     }
 
