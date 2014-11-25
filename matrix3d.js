@@ -1,5 +1,5 @@
 (function(w) {
-    
+
     var Matrix3D = {};
 
     Matrix3D._deg2rad = function(deg) {
@@ -106,8 +106,8 @@
 
     Matrix3D.scale = function(out, sx, sy, sz) {
         out[0] = sx;
-        out[5] = sy || out[5];
-        out[10] = sz || out[10];
+        out[5] = sy || sx;
+        out[10] = sz || sx;
     };
 
     Matrix3D.scaleX = function(out, sx) {
@@ -195,6 +195,17 @@
                                 mx[8] + ',' + mx[9] + ',' + mx[10] + ',' + mx[11] + ',' +
                                 mx[12] + ',' + mx[13] + ',' + mx[14] + ',' + mx[15] + ')';
     };
+
+    Matrix3D.extract = function(mx) {
+        return {
+            scaleX: mx[0],
+            scaleY: mx[5],
+            scaleZ: mx[10],
+            translateX: mx[12],
+            translateY: mx[13],
+            translateZ: mx[14],
+        };
+    }
 
     w.Matrix3D = Matrix3D;
 
