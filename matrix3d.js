@@ -19,14 +19,26 @@
 
     Matrix3D.fromTransform = function(str) {
         var r = str.match(/([\d.-]+(?!\w))+/g);
-        if (r) {
-            return new Float32Array([
-                r[0],   r[1],   r[2],   r[3],
-                r[4],   r[5],   r[6],   r[7],
-                r[8],   r[9],   r[10],  r[11],
-                r[12],  r[13],  r[14],  r[15]
-            ]);
-        } else {
+
+        if(r) {
+            if(r.length === 16) { // matrix3d
+                return new Float32Array([
+                    r[0],   r[1],   r[2],   r[3],
+                    r[4],   r[5],   r[6],   r[7],
+                    r[8],   r[9],   r[10],  r[11],
+                    r[12],  r[13],  r[14],  r[15]
+                ]);
+            }
+            else if(r.length === 6) { // matrix
+                return new Float32Array([
+                    r[0],   r[1],   0,      0,
+                    r[2],   r[3],   0,      0,
+                    0,      0,      1,      0,
+                    r[4],   r[5],   0,      1
+                ]);
+            }
+        }
+        else {
             return;
         }
     };
@@ -197,6 +209,7 @@
     };
 
     Matrix3D.extract = function(mx) {
+        console.log(mx);
         return {
             scaleX: mx[0],
             scaleY: mx[5],
