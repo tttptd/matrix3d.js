@@ -209,7 +209,6 @@
     };
 
     Matrix3D.extract = function(mx) {
-        console.log(mx);
         return {
             scaleX: mx[0],
             scaleY: mx[5],
