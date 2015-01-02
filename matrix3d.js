@@ -23,8 +23,6 @@
     Matrix3D.fromTransform = function(str) {
         var r = str.match(/([\d.-]+(?!\w))+/g);
 
-        console.log(r);
-
         if(r) {
             if(r.length === 16) { // matrix3d
                 return new Float32Array([
