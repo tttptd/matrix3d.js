@@ -21,7 +21,7 @@
     };
 
     Matrix3D.fromTransform = function(str) {
-        var r = str.match(/([\d.-]+(?!\w))+/g);
+        var r = str.match(/([\d.e-]+(?!\w))+/g);
 
         if(r) {
             if(r.length === 16) { // matrix3d
