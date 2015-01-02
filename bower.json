@@ -1,0 +1,16 @@
+{
+  "name": "matrix3d.js",
+  "version": "0.0.0",
+  "main": "matrix3d.js",
+  "license": "MIT",
+  "ignore": [
+  ],
+  "devDependencies": {
+  },
+  "keywords": [
+    "css",
+    "matrix3d",
+    "javascript",
+    "library"
+  ]
+}
