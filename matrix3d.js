@@ -2,23 +2,30 @@
 
     var Matrix3D = {};
 
+
     Matrix3D._deg2rad = function(deg) {
         return deg * (Math.PI / 180);
     };
+
 
     Matrix3D.create = function() {
         var out,
             args = Array.prototype.slice.call(arguments);
 
-        if(args.length > 0 && args.length < 16) throw 'Invalid arguments supplied!';
+        if(args.length > 0 && args.length < 16) {
+            throw 'Invalid arguments supplied!';
+        }
+
         if(args.length === 0) {
             out = new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
         }
         else {
             out = new Float32Array(args);
         }
+
         return out;
     };
+
 
     Matrix3D.fromTransform = function(str) {
         var r = str.match(/([\d.e-]+(?!\w))+/g);
@@ -46,10 +53,12 @@
         }
     };
 
+
     Matrix3D.identity = function(out) {
         out[0] = out[5] = out[10] = out[15] = 1;
         out[1] = out[2] = out[3] = out[4] = out[6] = out[7] = out[8] = out[9] = out[11] = out[12] = out[13] = out[14] = 0;
     };
+
 
     Matrix3D.multiply = function(mx1, mx2, out) {
         var a1 = mx1[0],
@@ -110,6 +119,7 @@
         out[15] = 1;
     };
 
+
     Matrix3D.isEqual = function(mx1, mx2) {
         var a1 = mx1[0],
             b1 = mx1[1],
@@ -163,23 +173,28 @@
         }
     };
 
+
     Matrix3D.translate = function(out, tx, ty, tz) {
         out[12] = tx;
         out[13] = ty || out[13];
         out[14] = tz || out[14];
     };
 
+
     Matrix3D.translateX = function(out, tx) {
         out[12] = tx;
     };
+
 
     Matrix3D.translateY = function(out, ty) {
         out[13] = ty;
     };
 
+
     Matrix3D.translateZ = function(out, tz) {
         out[14] = tz;
     };
+
 
     Matrix3D.scale = function(out, sx, sy, sz) {
         out[0] = sx;
@@ -187,17 +202,21 @@
         out[10] = sz || sx;
     };
 
+
     Matrix3D.scaleX = function(out, sx) {
         out[0] = sx;
     };
+
 
     Matrix3D.scaleY = function(out, sy) {
         out[5] = sy;
     };
 
+
     Matrix3D.scaleZ = function(out, sz) {
         out[10] = sz;
     };
+
 
     Matrix3D.rotate = function(out, deg) {
         var rad = Matrix3D._deg2rad(deg),
@@ -210,6 +229,7 @@
         out[5] = cos;
     };
 
+
     Matrix3D.rotateX = function(out, deg) {
         var rad = Matrix3D._deg2rad(deg),
             cos = Math.cos(rad),
@@ -220,6 +240,7 @@
         out[9] = -sin;
         out[10] = cos;
     };
+
 
     Matrix3D.rotateY = function(out, deg) {
         var rad = Matrix3D._deg2rad(deg),
@@ -232,9 +253,11 @@
         out[10] = cos;
     };
 
+
     Matrix3D.rotateZ = function(out, deg) {
         Matrix3D.rotate(out, deg);
     };
+
 
     Matrix3D.skew = function(out, xdeg, ydeg) {
         var xrad = Matrix3D._deg2rad(xdeg),
@@ -246,12 +269,14 @@
         out[1] = ytan;
     };
 
+
     Matrix3D.skewX = function(out, xdeg) {
         var rad = Matrix3D._deg2rad(xdeg),
             tan = Math.tan(rad);
 
         out[4] = tan;
     };
+
 
     Matrix3D.skewY = function(out, ydeg) {
         var rad = Matrix3D._deg2rad(ydeg),
@@ -260,11 +285,13 @@
         out[1] = tan;
     };
 
+
     Matrix3D.toTransform = function(mx) {
         return 'matrix(' +  mx[0] + ',' + mx[1] + ',' +
                             mx[4] + ',' + mx[5] + ',' +
                             mx[12] + ',' + mx[13] + ')';
     };
+
 
     Matrix3D.toTransform3D = function(mx) {
         return 'matrix3d(' +    mx[0] + ',' + mx[1] + ',' + mx[2] + ',' + mx[3] + ',' +
@@ -272,6 +299,7 @@
                                 mx[8] + ',' + mx[9] + ',' + mx[10] + ',' + mx[11] + ',' +
                                 mx[12] + ',' + mx[13] + ',' + mx[14] + ',' + mx[15] + ')';
     };
+
 
     Matrix3D.extract = function(mx) {
         return {
@@ -283,6 +311,7 @@
             translateZ: mx[14]
         };
     }
+
 
     w.Matrix3D = Matrix3D;
 
