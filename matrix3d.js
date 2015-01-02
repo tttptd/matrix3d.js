@@ -7,11 +7,14 @@
     };
 
     Matrix3D.create = function() {
-        var out, args = Array.prototype.slice.call(arguments);
-        if (args.length > 0 && args.length < 16) throw 'Invalid arguments supplied!';
-        if (args.length === 0) {
+        var out,
+            args = Array.prototype.slice.call(arguments);
+
+        if(args.length > 0 && args.length < 16) throw 'Invalid arguments supplied!';
+        if(args.length === 0) {
             out = new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
-        } else {
+        }
+        else {
             out = new Float32Array(args);
         }
         return out;
@@ -19,6 +22,8 @@
 
     Matrix3D.fromTransform = function(str) {
         var r = str.match(/([\d.-]+(?!\w))+/g);
+
+        console.log(r);
 
         if(r) {
             if(r.length === 16) { // matrix3d
@@ -49,15 +54,45 @@
     };
 
     Matrix3D.multiply = function(mx1, mx2, out) {
-        var a1 = mx1[0], b1 = mx1[1], c1 = mx1[2], d1 = mx1[3],
-            e1 = mx1[4], f1 = mx1[5], g1 = mx1[6], h1 = mx1[7],
-            i1 = mx1[8], j1 = mx1[9], k1 = mx1[10], l1 = mx1[11],
-            m1 = mx1[12], n1 = mx1[13], o1 = mx1[14], p1 = mx1[15];
+        var a1 = mx1[0],
+            b1 = mx1[1],
+            c1 = mx1[2],
+            d1 = mx1[3],
 
-        var a2 = mx2[0], b2 = mx2[1], c2 = mx2[2], d2 = mx2[3],
-            e2 = mx2[4], f2 = mx2[5], g2 = mx2[6], h2 = mx2[7],
-            i2 = mx2[8], j2 = mx2[9], k2 = mx2[10], l2 = mx2[11],
-            m2 = mx2[12], n2 = mx2[13], o2 = mx2[14], p2 = mx2[15];
+            e1 = mx1[4],
+            f1 = mx1[5],
+            g1 = mx1[6],
+            h1 = mx1[7],
+
+            i1 = mx1[8],
+            j1 = mx1[9],
+            k1 = mx1[10],
+            l1 = mx1[11],
+
+            m1 = mx1[12],
+            n1 = mx1[13],
+            o1 = mx1[14],
+            p1 = mx1[15],
+
+            a2 = mx2[0],
+            b2 = mx2[1],
+            c2 = mx2[2],
+            d2 = mx2[3],
+
+            e2 = mx2[4],
+            f2 = mx2[5],
+            g2 = mx2[6],
+            h2 = mx2[7],
+
+            i2 = mx2[8],
+            j2 = mx2[9],
+            k2 = mx2[10],
+            l2 = mx2[11],
+
+            m2 = mx2[12],
+            n2 = mx2[13],
+            o2 = mx2[14],
+            p2 = mx2[15];
 
         out[0] = a1 * a2 + b1 * e2 + c1 * i2 + d1 * m2;
         out[1] = a1 * b2 + b1 * f2 + c1 * j2 + d1 * n2;
@@ -78,22 +113,54 @@
     };
 
     Matrix3D.isEqual = function(mx1, mx2) {
-        var a1 = mx1[0], b1 = mx1[1], c1 = mx1[2], d1 = mx1[3],
-            e1 = mx1[4], f1 = mx1[5], g1 = mx1[6], h1 = mx1[7],
-            i1 = mx1[8], j1 = mx1[9], k1 = mx1[10], l1 = mx1[11],
-            m1 = mx1[12], n1 = mx1[13], o1 = mx1[14], p1 = mx1[15];
+        var a1 = mx1[0],
+            b1 = mx1[1],
+            c1 = mx1[2],
+            d1 = mx1[3],
 
-        var a2 = mx2[0], b2 = mx2[1], c2 = mx2[2], d2 = mx2[3],
-            e2 = mx2[4], f2 = mx2[5], g2 = mx2[6], h2 = mx2[7],
-            i2 = mx2[8], j2 = mx2[9], k2 = mx2[10], l2 = mx2[11],
-            m2 = mx2[12], n2 = mx2[13], o2 = mx2[14], p2 = mx2[15];
+            e1 = mx1[4],
+            f1 = mx1[5],
+            g1 = mx1[6],
+            h1 = mx1[7],
 
-        if (a1 === a2 && b1 === b2 && c1 === c2 && d1 === d2 &&
+            i1 = mx1[8],
+            j1 = mx1[9],
+            k1 = mx1[10],
+            l1 = mx1[11],
+
+            m1 = mx1[12],
+            n1 = mx1[13],
+            o1 = mx1[14],
+            p1 = mx1[15],
+
+            a2 = mx2[0],
+            b2 = mx2[1],
+            c2 = mx2[2],
+            d2 = mx2[3],
+
+            e2 = mx2[4],
+            f2 = mx2[5],
+            g2 = mx2[6],
+            h2 = mx2[7],
+
+            i2 = mx2[8],
+            j2 = mx2[9],
+            k2 = mx2[10],
+            l2 = mx2[11],
+
+            m2 = mx2[12],
+            n2 = mx2[13],
+            o2 = mx2[14],
+            p2 = mx2[15];
+
+        if(a1 === a2 && b1 === b2 && c1 === c2 && d1 === d2 &&
             e1 === e2 && f1 === f2 && g1 === g2 && h1 === h2 &&
             i1 === i2 && j1 === j2 && k1 === k2 && l1 === l2 &&
             m1 === m2 && n1 === n2 && o1 === o2 && p1 === p2) {
+
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     };
